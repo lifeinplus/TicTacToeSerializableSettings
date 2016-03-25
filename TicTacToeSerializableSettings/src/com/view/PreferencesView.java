@@ -1,6 +1,5 @@
 package com.view;
 
-import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.Box;
@@ -14,26 +13,28 @@ import com.model.UserPreferences;
 
 public class PreferencesView extends JPanel implements IPreferences {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JLabel labelGameVersion;
 	private JLabel labelGameSkin;
-	private JComboBox gameVersionCombo;
-	private JComboBox gameSkinCombo;
+	private JComboBox<?> gameVersionCombo;
+	private JComboBox<?> gameSkinCombo;
 	
 	public PreferencesView() {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		/*
-		 * Создаём компоненты панели
+		 * РЎРѕР·РґР°С‘Рј РєРѕРјРїРѕРЅРµРЅС‚С‹ РїР°РЅРµР»Рё
 		 */
 		
 		labelGameVersion = new JLabel("Version:");
 		labelGameSkin = new JLabel("Skin:");
-		gameVersionCombo = new JComboBox(IPreferences.gameVersion);
-		gameSkinCombo = new JComboBox(IPreferences.gameSkin);
+		gameVersionCombo = new JComboBox<Object>(IPreferences.gameVersion);
+		gameSkinCombo = new JComboBox<Object>(IPreferences.gameSkin);
 		
 		/*
-		 * Пункты из выпадающих списков выбираем
-		 * в соответствии с загруженными настройками
+		 * РџСѓРЅРєС‚С‹ РёР· РІС‹РїР°РґР°СЋС‰РёС… СЃРїРёСЃРєРѕРІ РІС‹Р±РёСЂР°РµРј
+		 * РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃ Р·Р°РіСЂСѓР¶РµРЅРЅС‹РјРё РЅР°СЃС‚СЂРѕР№РєР°РјРё
 		 */
 		
 		final UserPreferences userPrefs = new UserPreferences();
@@ -41,9 +42,9 @@ public class PreferencesView extends JPanel implements IPreferences {
 		gameSkinCombo.setSelectedItem(userPrefs.getGameSkin());
 		
 		/*
-		 * Создаём горизонтальные контейнеры
-		 * с отступами от правого края
-		 * для хранения меток
+		 * РЎРѕР·РґР°С‘Рј РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅС‹Рµ РєРѕРЅС‚РµР№РЅРµСЂС‹
+		 * СЃ РѕС‚СЃС‚СѓРїР°РјРё РѕС‚ РїСЂР°РІРѕРіРѕ РєСЂР°СЏ
+		 * РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РјРµС‚РѕРє
 		 */
 		
 		Box boxVersion = Box.createHorizontalBox();
@@ -55,8 +56,8 @@ public class PreferencesView extends JPanel implements IPreferences {
 		boxSkin.add(Box.createHorizontalGlue());
 
 		/*
-		 * Размещаем компоненты на панеле, разделяя их
-		 * невидимыми элементами фиксированного размера
+		 * Р Р°Р·РјРµС‰Р°РµРј РєРѕРјРїРѕРЅРµРЅС‚С‹ РЅР° РїР°РЅРµР»Рµ, СЂР°Р·РґРµР»СЏСЏ РёС…
+		 * РЅРµРІРёРґРёРјС‹РјРё СЌР»РµРјРµРЅС‚Р°РјРё С„РёРєСЃРёСЂРѕРІР°РЅРЅРѕРіРѕ СЂР°Р·РјРµСЂР°
 		 */
 		
 		this.add(boxVersion);

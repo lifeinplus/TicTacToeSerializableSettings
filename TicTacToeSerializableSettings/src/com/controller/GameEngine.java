@@ -11,11 +11,8 @@ import java.awt.event.MouseListener;
 import java.net.URL;
 import java.util.Random;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
 
 import com.model.UserPreferences;
 import com.view.GameView;
@@ -51,13 +48,13 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// Определяем значение ActionCommand в событии
+		// РћРїСЂРµРґРµР»СЏРµРј Р·РЅР°С‡РµРЅРёРµ ActionCommand РІ СЃРѕР±С‹С‚РёРё
 		switch (e.getActionCommand()) {
 		
 		/*
-		 * Если был установлен переключатель "1 Player",
-		 * активируем переключатели уровней сложности
-		 * и поднимаем флаг одиночной игры
+		 * Р•СЃР»Рё Р±С‹Р» СѓСЃС‚Р°РЅРѕРІР»РµРЅ РїРµСЂРµРєР»СЋС‡Р°С‚РµР»СЊ "1 Player",
+		 * Р°РєС‚РёРІРёСЂСѓРµРј РїРµСЂРµРєР»СЋС‡Р°С‚РµР»Рё СѓСЂРѕРІРЅРµР№ СЃР»РѕР¶РЅРѕСЃС‚Рё
+		 * Рё РїРѕРґРЅРёРјР°РµРј С„Р»Р°Рі РѕРґРёРЅРѕС‡РЅРѕР№ РёРіСЂС‹
 		 */
 		
 		case ONE_PLAYER:
@@ -66,9 +63,9 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 			break;
 			
 		/*
-		 * Если был установлен переключатель "2 Players",
-		 * деактивируем переключатели уровней сложности
-		 * и опускаем флаг одиночной игры
+		 * Р•СЃР»Рё Р±С‹Р» СѓСЃС‚Р°РЅРѕРІР»РµРЅ РїРµСЂРµРєР»СЋС‡Р°С‚РµР»СЊ "2 Players",
+		 * РґРµР°РєС‚РёРІРёСЂСѓРµРј РїРµСЂРµРєР»СЋС‡Р°С‚РµР»Рё СѓСЂРѕРІРЅРµР№ СЃР»РѕР¶РЅРѕСЃС‚Рё
+		 * Рё РѕРїСѓСЃРєР°РµРј С„Р»Р°Рі РѕРґРёРЅРѕС‡РЅРѕР№ РёРіСЂС‹
 		 */
 			
 		case TWO_PLYAERS:
@@ -98,8 +95,8 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 	public void mousePressed(MouseEvent e) {
 		
 		/*
-		 * Приводим нажатый компонент к типу GameCell
-		 * и выполняем операции по клику на ячейку
+		 * РџСЂРёРІРѕРґРёРј РЅР°Р¶Р°С‚С‹Р№ РєРѕРјРїРѕРЅРµРЅС‚ Рє С‚РёРїСѓ GameCell
+		 * Рё РІС‹РїРѕР»РЅСЏРµРј РѕРїРµСЂР°С†РёРё РїРѕ РєР»РёРєСѓ РЅР° СЏС‡РµР№РєСѓ
 		 */
 		
 		GameCell currentCell = (GameCell) e.getComponent();
@@ -110,9 +107,9 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 	private void clickOnCell(GameCell currentCell) {
 
 		/*
-		 * Если во время активной игры
-		 * была нажата пустая ячейка,
-		 * увеличиваем счётчик ходов на единицу
+		 * Р•СЃР»Рё РІРѕ РІСЂРµРјСЏ Р°РєС‚РёРІРЅРѕР№ РёРіСЂС‹
+		 * Р±С‹Р»Р° РЅР°Р¶Р°С‚Р° РїСѓСЃС‚Р°СЏ СЏС‡РµР№РєР°,
+		 * СѓРІРµР»РёС‡РёРІР°РµРј СЃС‡С‘С‚С‡РёРє С…РѕРґРѕРІ РЅР° РµРґРёРЅРёС†Сѓ
 		 */
 			
 		if (!parent.isGameOver()) {
@@ -120,20 +117,20 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 				parent.setTurn(parent.getTurn() + 1);
 				
 				/*
-				 * Устанавливаем иконку в нажатую ячейку
+				 * РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РёРєРѕРЅРєСѓ РІ РЅР°Р¶Р°С‚СѓСЋ СЏС‡РµР№РєСѓ
 				 */
 				
 				String turnType = setCellsIcon(currentCell);
 				
 				/*
-				 * Проверяем наличие победителя
+				 * РџСЂРѕРІРµСЂСЏРµРј РЅР°Р»РёС‡РёРµ РїРѕР±РµРґРёС‚РµР»СЏ
 				 */
 				
 				checkForWinner();
 
 				/*
-				 * Для хода компьютера игра должна быть одиночной,
-				 * а ход игры не должен быть чётным или последним
+				 * Р”Р»СЏ С…РѕРґР° РєРѕРјРїСЊСЋС‚РµСЂР° РёРіСЂР° РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РѕРґРёРЅРѕС‡РЅРѕР№,
+				 * Р° С…РѕРґ РёРіСЂС‹ РЅРµ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ С‡С‘С‚РЅС‹Рј РёР»Рё РїРѕСЃР»РµРґРЅРёРј
 				 */
 				
 				if (parent.isOnePlayerMode()) {
@@ -143,8 +140,8 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 					if ((turn % 2 == 1) && (turn < 8)) {
 						
 						/*
-						 * Сложность хода компьютера выбирается в зависимости
-						 * от выбранного переключателя уровня сложности игры
+						 * РЎР»РѕР¶РЅРѕСЃС‚СЊ С…РѕРґР° РєРѕРјРїСЊСЋС‚РµСЂР° РІС‹Р±РёСЂР°РµС‚СЃСЏ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё
+						 * РѕС‚ РІС‹Р±СЂР°РЅРЅРѕРіРѕ РїРµСЂРµРєР»СЋС‡Р°С‚РµР»СЏ СѓСЂРѕРІРЅСЏ СЃР»РѕР¶РЅРѕСЃС‚Рё РёРіСЂС‹
 						 */
 						
 						if (parent.getGameLevel().equals("Easy")) {
@@ -164,10 +161,10 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 		String currentPlayer = parent.getCurrentPlayer();
 		
 		/*
-		 * Определив тип текущего игрока,
-		 * передаём в ячейку соответствующее значение,
-		 * создаём и устанавливаем в ячейку иконку
-		 * и изменяем статус очерёдности хода
+		 * РћРїСЂРµРґРµР»РёРІ С‚РёРї С‚РµРєСѓС‰РµРіРѕ РёРіСЂРѕРєР°,
+		 * РїРµСЂРµРґР°С‘Рј РІ СЏС‡РµР№РєСѓ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РµРµ Р·РЅР°С‡РµРЅРёРµ,
+		 * СЃРѕР·РґР°С‘Рј Рё СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РІ СЏС‡РµР№РєСѓ РёРєРѕРЅРєСѓ
+		 * Рё РёР·РјРµРЅСЏРµРј СЃС‚Р°С‚СѓСЃ РѕС‡РµСЂС‘РґРЅРѕСЃС‚Рё С…РѕРґР°
 		 */
 		
 		if (currentPlayer == GameView.PLAYERX) {
@@ -192,8 +189,8 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 	private void showPreferences() {
 
 		/*
-		 * Создаём панель пользовательских настроек
-		 * и передаём её в диалоговое окно
+		 * РЎРѕР·РґР°С‘Рј РїР°РЅРµР»СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёС… РЅР°СЃС‚СЂРѕРµРє
+		 * Рё РїРµСЂРµРґР°С‘Рј РµС‘ РІ РґРёР°Р»РѕРіРѕРІРѕРµ РѕРєРЅРѕ
 		 */
 			
 		final PreferencesView prefsView = new PreferencesView();
@@ -205,10 +202,10 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 				JOptionPane.INFORMATION_MESSAGE, null, settingsArray, settingsArray[0]);
 
 		/*
-		 * Если игрок выбрал вариант "Save settings",
-		 * создаём экземпляр пользовательских настроек,
-		 * изменяем значения его полей на значения из диалогового окна,
-		 * изменяем стиль игры и сохраняем настройки в файл
+		 * Р•СЃР»Рё РёРіСЂРѕРє РІС‹Р±СЂР°Р» РІР°СЂРёР°РЅС‚ "Save settings",
+		 * СЃРѕР·РґР°С‘Рј СЌРєР·РµРјРїР»СЏСЂ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёС… РЅР°СЃС‚СЂРѕРµРє,
+		 * РёР·РјРµРЅСЏРµРј Р·РЅР°С‡РµРЅРёСЏ РµРіРѕ РїРѕР»РµР№ РЅР° Р·РЅР°С‡РµРЅРёСЏ РёР· РґРёР°Р»РѕРіРѕРІРѕРіРѕ РѕРєРЅР°,
+		 * РёР·РјРµРЅСЏРµРј СЃС‚РёР»СЊ РёРіСЂС‹ Рё СЃРѕС…СЂР°РЅСЏРµРј РЅР°СЃС‚СЂРѕР№РєРё РІ С„Р°Р№Р»
 		 */
 		
 		if (i == JOptionPane.YES_OPTION) {
@@ -227,9 +224,9 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 	private void resetGame() {
 		
 		/*
-		 * Если игрок сбрасывает игру
-		 * в момент между первым и последним ходом,
-		 * перед очисткой ячеек запрашиваем подтверждение
+		 * Р•СЃР»Рё РёРіСЂРѕРє СЃР±СЂР°СЃС‹РІР°РµС‚ РёРіСЂСѓ
+		 * РІ РјРѕРјРµРЅС‚ РјРµР¶РґСѓ РїРµСЂРІС‹Рј Рё РїРѕСЃР»РµРґРЅРёРј С…РѕРґРѕРј,
+		 * РїРµСЂРµРґ РѕС‡РёСЃС‚РєРѕР№ СЏС‡РµРµРє Р·Р°РїСЂР°С€РёРІР°РµРј РїРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ
 		 */
 		
 		int turn = parent.getTurn();
@@ -250,8 +247,8 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 	public void setCurrentPlayerNote(String player) {
 		
 		/*
-		 * Задаём размер и цвет шрифта поля статуса
-		 * и передаём значение текущего игрока в GUI-класс
+		 * Р—Р°РґР°С‘Рј СЂР°Р·РјРµСЂ Рё С†РІРµС‚ С€СЂРёС„С‚Р° РїРѕР»СЏ СЃС‚Р°С‚СѓСЃР°
+		 * Рё РїРµСЂРµРґР°С‘Рј Р·РЅР°С‡РµРЅРёРµ С‚РµРєСѓС‰РµРіРѕ РёРіСЂРѕРєР° РІ GUI-РєР»Р°СЃСЃ
 		 */
 		
 		parent.setStatusFont(STATUS_TEXT_FONT);
@@ -260,9 +257,9 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 		parent.setCurrentPlayer(player);
 
 		/*
-		 * В зависимости от режима игры
-		 * и значения переменной текущего игрока,
-		 * устанавливаем в поле статуса соответствующий текст
+		 * Р’ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЂРµР¶РёРјР° РёРіСЂС‹
+		 * Рё Р·РЅР°С‡РµРЅРёСЏ РїРµСЂРµРјРµРЅРЅРѕР№ С‚РµРєСѓС‰РµРіРѕ РёРіСЂРѕРєР°,
+		 * СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РІ РїРѕР»Рµ СЃС‚Р°С‚СѓСЃР° СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёР№ С‚РµРєСЃС‚
 		 */
 		
 		int playerLength = parent.getImagePlayerX().length();
@@ -279,8 +276,8 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 	private void hardBotClick(String turnType) {
 		
 		/*
-		 * При наличии у компьютера возможности победить в этом ходу
-		 * отправляем событие клика мыши в ключевую ячейку
+		 * РџСЂРё РЅР°Р»РёС‡РёРё Сѓ РєРѕРјРїСЊСЋС‚РµСЂР° РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё РїРѕР±РµРґРёС‚СЊ РІ СЌС‚РѕРј С…РѕРґСѓ
+		 * РѕС‚РїСЂР°РІР»СЏРµРј СЃРѕР±С‹С‚РёРµ РєР»РёРєР° РјС‹С€Рё РІ РєР»СЋС‡РµРІСѓСЋ СЏС‡РµР№РєСѓ
 		 */
 
 		Point botCell = new Point();
@@ -299,9 +296,9 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 		}
 		
 		/*
-		 * Если возможности победить в этом ходу нет,
-		 * пытаемся помешать победить игроку,
-		 * опередив в выборе ключевой ячейки
+		 * Р•СЃР»Рё РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё РїРѕР±РµРґРёС‚СЊ РІ СЌС‚РѕРј С…РѕРґСѓ РЅРµС‚,
+		 * РїС‹С‚Р°РµРјСЃСЏ РїРѕРјРµС€Р°С‚СЊ РїРѕР±РµРґРёС‚СЊ РёРіСЂРѕРєСѓ,
+		 * РѕРїРµСЂРµРґРёРІ РІ РІС‹Р±РѕСЂРµ РєР»СЋС‡РµРІРѕР№ СЏС‡РµР№РєРё
 		 */
 		
 		Point obstacleCell = new Point();
@@ -318,8 +315,8 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 		}
 		
 		/*
-		 * Если выигрышные комбинации отсутствуют,
-		 * а центральная ячейка пуста, выбираем её
+		 * Р•СЃР»Рё РІС‹РёРіСЂС‹С€РЅС‹Рµ РєРѕРјР±РёРЅР°С†РёРё РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‚,
+		 * Р° С†РµРЅС‚СЂР°Р»СЊРЅР°СЏ СЏС‡РµР№РєР° РїСѓСЃС‚Р°, РІС‹Р±РёСЂР°РµРј РµС‘
 		 */
 		
 		if (cells[1][1].getCellValue().equals("")) {
@@ -331,8 +328,8 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 		}
 		
 		/*
-		 * Если центральная ячейка уже занята,
-		 * ищем свободную ячейку в углу и занимаем её
+		 * Р•СЃР»Рё С†РµРЅС‚СЂР°Р»СЊРЅР°СЏ СЏС‡РµР№РєР° СѓР¶Рµ Р·Р°РЅСЏС‚Р°,
+		 * РёС‰РµРј СЃРІРѕР±РѕРґРЅСѓСЋ СЏС‡РµР№РєСѓ РІ СѓРіР»Сѓ Рё Р·Р°РЅРёРјР°РµРј РµС‘
 		 */
 		
 		if (cells[1][1].getCellValue() != "") {
@@ -369,8 +366,8 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 			}
 		}
 		
-		// Если ни один из вариантов не сработал,
-		// кликаем по случайной ячейке
+		// Р•СЃР»Рё РЅРё РѕРґРёРЅ РёР· РІР°СЂРёР°РЅС‚РѕРІ РЅРµ СЃСЂР°Р±РѕС‚Р°Р»,
+		// РєР»РёРєР°РµРј РїРѕ СЃР»СѓС‡Р°Р№РЅРѕР№ СЏС‡РµР№РєРµ
 		easyBotClick();
 	}
 
@@ -383,8 +380,8 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 		nextCellClick.x = -1;
 		
 		/*
-		 * Перебираем строки и столбцы
-		 * в поисках подходящей ячейки
+		 * РџРµСЂРµР±РёСЂР°РµРј СЃС‚СЂРѕРєРё Рё СЃС‚РѕР»Р±С†С‹
+		 * РІ РїРѕРёСЃРєР°С… РїРѕРґС…РѕРґСЏС‰РµР№ СЏС‡РµР№РєРё
 		 */
 		
 		for (int i = 0; i < 3; i++) {
@@ -440,8 +437,8 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 		}
 		
 		/*
-		 * Перебираем ячейки по диагонали
-		 * от левого верхнего угла до правого нижнего
+		 * РџРµСЂРµР±РёСЂР°РµРј СЏС‡РµР№РєРё РїРѕ РґРёР°РіРѕРЅР°Р»Рё
+		 * РѕС‚ Р»РµРІРѕРіРѕ РІРµСЂС…РЅРµРіРѕ СѓРіР»Р° РґРѕ РїСЂР°РІРѕРіРѕ РЅРёР¶РЅРµРіРѕ
 		 */
 		
 		firstCellValue = cells[0][0].getCellValue();
@@ -470,8 +467,8 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 		}
 		
 		/*
-		 * Перебираем ячейки по диагонали
-		 * от левого нижнего угла до правого верхнего
+		 * РџРµСЂРµР±РёСЂР°РµРј СЏС‡РµР№РєРё РїРѕ РґРёР°РіРѕРЅР°Р»Рё
+		 * РѕС‚ Р»РµРІРѕРіРѕ РЅРёР¶РЅРµРіРѕ СѓРіР»Р° РґРѕ РїСЂР°РІРѕРіРѕ РІРµСЂС…РЅРµРіРѕ
 		 */
 		
 		firstCellValue = cells[2][0].getCellValue();
@@ -508,8 +505,8 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 		int randCellY = randNumber.nextInt(3);
 		
 		/*
-		 * Пока не попадётся пустая ячейка,
-		 * генерируем новые случайные координаты
+		 * РџРѕРєР° РЅРµ РїРѕРїР°РґС‘С‚СЃСЏ РїСѓСЃС‚Р°СЏ СЏС‡РµР№РєР°,
+		 * РіРµРЅРµСЂРёСЂСѓРµРј РЅРѕРІС‹Рµ СЃР»СѓС‡Р°Р№РЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹
 		 */
 		
 		while (cells[randCellX][randCellY].getCellValue() != "") {
@@ -518,8 +515,8 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 		}
 		
 		/*
-		 * Создаём экземпляр события клика мыши
-		 * и отправляем его в сгенерированную ячейку
+		 * РЎРѕР·РґР°С‘Рј СЌРєР·РµРјРїР»СЏСЂ СЃРѕР±С‹С‚РёСЏ РєР»РёРєР° РјС‹С€Рё
+		 * Рё РѕС‚РїСЂР°РІР»СЏРµРј РµРіРѕ РІ СЃРіРµРЅРµСЂРёСЂРѕРІР°РЅРЅСѓСЋ СЏС‡РµР№РєСѓ
 		 */
 		
 		MouseEvent event = new MouseEvent(cells[randCellX][randCellY],
@@ -530,8 +527,8 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 	private void checkForWinner() {
 		
 		/*
-		 * Если есть строка из трёх одинаковых ячеек,
-		 * изменяем текст в поле статуса
+		 * Р•СЃР»Рё РµСЃС‚СЊ СЃС‚СЂРѕРєР° РёР· С‚СЂС‘С… РѕРґРёРЅР°РєРѕРІС‹С… СЏС‡РµРµРє,
+		 * РёР·РјРµРЅСЏРµРј С‚РµРєСЃС‚ РІ РїРѕР»Рµ СЃС‚Р°С‚СѓСЃР°
 		 */
 		
 		if (fingThreeInARow()) {
@@ -570,9 +567,9 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 		String cellType = "";
 
 		/*
-		 * В случае обнаружения одинаковых ячеек
-		 * среди строк, столбцов или диагональных линий,
-		 * сохраняем их координаты и тип значения
+		 * Р’ СЃР»СѓС‡Р°Рµ РѕР±РЅР°СЂСѓР¶РµРЅРёСЏ РѕРґРёРЅР°РєРѕРІС‹С… СЏС‡РµРµРє
+		 * СЃСЂРµРґРё СЃС‚СЂРѕРє, СЃС‚РѕР»Р±С†РѕРІ РёР»Рё РґРёР°РіРѕРЅР°Р»СЊРЅС‹С… Р»РёРЅРёР№,
+		 * СЃРѕС…СЂР°РЅСЏРµРј РёС… РєРѕРѕСЂРґРёРЅР°С‚С‹ Рё С‚РёРї Р·РЅР°С‡РµРЅРёСЏ
 		 */
 		
 		for (int i = 0; i < 3; i++) {
@@ -652,8 +649,8 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 		}
 		
 		/*
-		 * Если был найдена линия с одинаковыми ячейками,
-		 * окрашиваем её и активируем флаг окончания игры
+		 * Р•СЃР»Рё Р±С‹Р» РЅР°Р№РґРµРЅР° Р»РёРЅРёСЏ СЃ РѕРґРёРЅР°РєРѕРІС‹РјРё СЏС‡РµР№РєР°РјРё,
+		 * РѕРєСЂР°С€РёРІР°РµРј РµС‘ Рё Р°РєС‚РёРІРёСЂСѓРµРј С„Р»Р°Рі РѕРєРѕРЅС‡Р°РЅРёСЏ РёРіСЂС‹
 		 */
 		
 		if (threeFound) {
@@ -676,9 +673,9 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 		URL iconPath = getClass().getResource(path);
 
 		/*
-		 * При наличии изображения по адресу,
-		 * создаём иконку на его основе,
-		 * иначе выводим в консоль сообщение об ошибке
+		 * РџСЂРё РЅР°Р»РёС‡РёРё РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕ Р°РґСЂРµСЃСѓ,
+		 * СЃРѕР·РґР°С‘Рј РёРєРѕРЅРєСѓ РЅР° РµРіРѕ РѕСЃРЅРѕРІРµ,
+		 * РёРЅР°С‡Рµ РІС‹РІРѕРґРёРј РІ РєРѕРЅСЃРѕР»СЊ СЃРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ
 		 */
 		
 		if (iconPath != null) {
@@ -692,7 +689,7 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 	private void resetCells() {
 		
 		/*
-		 * Обнуляем состояние каждой непустой ячейки
+		 * РћР±РЅСѓР»СЏРµРј СЃРѕСЃС‚РѕСЏРЅРёРµ РєР°Р¶РґРѕР№ РЅРµРїСѓСЃС‚РѕР№ СЏС‡РµР№РєРё
 		 */
 		
 		for (GameCell[] line : cells) {
@@ -708,9 +705,9 @@ public class GameEngine extends MouseAdapter implements ActionListener, MouseLis
 		parent.repaint();
 
 		/*
-		 * Изменяем текст поля статуса,
-		 * сбрасываем счётчик ходов
-		 * и опускаем флаг конца игры
+		 * РР·РјРµРЅСЏРµРј С‚РµРєСЃС‚ РїРѕР»СЏ СЃС‚Р°С‚СѓСЃР°,
+		 * СЃР±СЂР°СЃС‹РІР°РµРј СЃС‡С‘С‚С‡РёРє С…РѕРґРѕРІ
+		 * Рё РѕРїСѓСЃРєР°РµРј С„Р»Р°Рі РєРѕРЅС†Р° РёРіСЂС‹
 		 */
 		
 		setCurrentPlayerNote(GameView.PLAYERX);

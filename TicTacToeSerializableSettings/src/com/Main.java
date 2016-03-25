@@ -6,10 +6,10 @@ import com.view.GameView;
 public class Main {
 
 	public static void main(String[] args) {
-		// Загружаем пользовательские настройки
+		// Р—Р°РіСЂСѓР¶Р°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёРµ РЅР°СЃС‚СЂРѕР№РєРё
 		UserPreferences userPrefs = new UserPreferences();
 		
-		// Создаём окно программы на основе загруженных настроек
+		// РЎРѕР·РґР°С‘Рј РѕРєРЅРѕ РїСЂРѕРіСЂР°РјРјС‹ РЅР° РѕСЃРЅРѕРІРµ Р·Р°РіСЂСѓР¶РµРЅРЅС‹С… РЅР°СЃС‚СЂРѕРµРє
 		new GameView(userPrefs);
 	}
 
